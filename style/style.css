@@ -214,7 +214,7 @@ h1, h2, h3 {
 }
 
 .container-content.-top > .vertical > .card-header {
-    margin-bottom: 2%;
+    margin-bottom: 4%;
 }
 
 .container-content.-bottom > .vertical {
@@ -256,6 +256,10 @@ h1, h2, h3 {
 
 .project-slide.-column-reverse {
     flex-direction: column-reverse;
+}
+
+.project-slide > .hoverable-link > a > p {
+    display: none;
 }
 
 .image-container {
@@ -444,12 +448,35 @@ h1, h2, h3 {
 }
 
 @media only screen and (max-width: 768px) {
-    body {
-        font-size: 1em;
+
+    .anchor-point, .card-description {
+        display: none;
     }
 
-    .anchor-point, .card-description, .image-container {
+    .project-slide.-row, 
+    .project-slide.-row-reverse, 
+    .project-slide.-column, 
+    .project-slide.-column-reverse {
+        flex-direction: column;
+    }
+
+    .project-slide > .hoverable-link > a > img {
         display: none;
+    }
+
+    .project-slide > .hoverable-link > a > p {
+        display: unset;
+    }
+
+    .project-slide > .hoverable-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .hoverable-link > a:after {
+        content: '';
     }
 
     .container-content, 
@@ -490,8 +517,29 @@ h1, h2, h3 {
     }
 
     .gallery-element {
-        /* display: inline-block; */
         height: 100vh;
         min-width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: .8em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .graphic-link {
+        width: 25%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 768px) {
+    body {
+        font-size: .8em;
+    }
+    .anchor-point {
+        display: none;
     }
 }
