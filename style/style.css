@@ -54,6 +54,7 @@ h1, h2, h3 {
     color: #FFFCF9;
     font-family: 'Staatliches', cursive;
     font-weight: 400;
+    padding: 0px 2px;
 }
 
 .command-tip {
@@ -140,7 +141,7 @@ h1, h2, h3 {
 
 .titular, 
 .card-header, 
-.card-description, 
+.card-additional, 
 .card-content {
     border-radius: 14px;
     box-shadow: rgba(0, 0, 0, .52) 0px 20px 60px 8px;
@@ -180,7 +181,7 @@ h1, h2, h3 {
     flex-direction: column;
 }
 
-.card-description {
+.card-additional {
     flex-grow: 3;
     display: block;
     text-align: justify;
@@ -197,7 +198,7 @@ h1, h2, h3 {
     height: unset;
 }
 
-.card-content > p, .card-description > p {
+.card-content > p, .card-additional > p {
     text-indent: 1.5em;
 }
 
@@ -228,6 +229,7 @@ h1, h2, h3 {
 
 .project-slide {
     display: flex;
+    border-bottom:  4px solid #000;
 }
 
 .project-info {
@@ -302,6 +304,21 @@ h1, h2, h3 {
     transition: transform .6s;
 }
 
+.flipping-card.-example > div {
+    border: 4px solid #AC29D2;
+}
+
+.flipping-card.-example > div::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: 'flipping card example';
+    text-align: center;
+    color: #AC29D2;
+    background-color: #fff;
+}
+
 .gallery-element:hover .flipping-card {
     transform: rotateY(180deg);
 }
@@ -315,14 +332,19 @@ h1, h2, h3 {
     -webkit-backface-visibility: hidden;
 }
 
+.card-front {
+    background-color: #000;
+}
+
 .card-back {
+    background-color: #fff;
     transform: rotateY(180deg);
 }
 
 .-flex-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .-flex-grid > * {
@@ -372,6 +394,7 @@ h1, h2, h3 {
 }
 
 .anchor-point::before {
+    display: flex;
     height: 1em;
     width: 0em;
     background-color: #000;
@@ -380,7 +403,8 @@ h1, h2, h3 {
     transition: all .6s;
     color: #fff;
     content: 'anchor';
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     border-radius: 30px;
     font-weight: 700;
     overflow: hidden;
@@ -447,9 +471,18 @@ h1, h2, h3 {
     content: 'me on media';
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
+    .anchor-point {
+        display: none;
+    }
+}
 
-    .anchor-point, .card-description {
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: .8em;
+    }
+
+    .card-additional {
         display: none;
     }
 
@@ -460,23 +493,12 @@ h1, h2, h3 {
         flex-direction: column;
     }
 
-    .project-slide > .hoverable-link > a > img {
-        display: none;
-    }
-
-    .project-slide > .hoverable-link > a > p {
-        display: unset;
-    }
-
-    .project-slide > .hoverable-link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-    }
-
-    .hoverable-link > a:after {
-        content: '';
+    .project-slide.-row > div, 
+    .project-slide.-row-reverse > div,
+    .project-slide.-column > div,
+    .project-slide.-column-reverse > div {
+        width: 100%;
+        height: unset;
     }
 
     .container-content, 
@@ -503,12 +525,6 @@ h1, h2, h3 {
         margin-bottom: 10px;
     }
 
-    .project-slide.-row > div, .project-slide.-row-reverse > div {
-        width: 100%;
-        height: auto;
-        border-bottom: 4px solid #000;
-    }
-
     .container.-gallery {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -522,12 +538,6 @@ h1, h2, h3 {
     }
 }
 
-@media only screen and (max-width: 768px) {
-    body {
-        font-size: .8em;
-    }
-}
-
 @media only screen and (max-width: 600px) {
     .graphic-link {
         width: 25%;
@@ -535,7 +545,7 @@ h1, h2, h3 {
     }
 }
 
-@media only screen and (max-height: 768px) {
+@media only screen and (max-height: 500px) {
     body {
         font-size: .8em;
     }
